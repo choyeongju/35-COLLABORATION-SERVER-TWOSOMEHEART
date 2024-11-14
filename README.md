@@ -1,0 +1,2 @@
+# 35-COLLABORATION-SERVER-TWOSOMEHEART
+SOPT 35기 합동세미나 서버 투썸하트 레포지토리
