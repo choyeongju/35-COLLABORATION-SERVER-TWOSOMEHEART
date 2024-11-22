@@ -7,17 +7,20 @@ import sopt.twosome.domain.Favorite;
 import sopt.twosome.domain.Member;
 import sopt.twosome.domain.Menu;
 import sopt.twosome.dto.request.FavoriteCreateRequest;
-import sopt.twosome.repository.MemberRepository;
-import sopt.twosome.repository.MenuRepository;
 import sopt.twosome.service.Member.MemberRetriever;
 import sopt.twosome.service.Menu.MenuRetriever;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class FavoriteService {
-    private final FavoriteSaver favoriteSaver;
+
     private final MemberRetriever memberRetriever;
     private final MenuRetriever menuRetriever;
+
+    private final FavoriteSaver favoriteSaver;
+    private final FavoriteRemover favoriteRemover;
 
     //메뉴 즐겨찾기(저장) 기능
     @Transactional
@@ -47,5 +50,17 @@ public class FavoriteService {
         return favoriteSaver.save(favoriteItem);
     }
 
-
+    // 즐겨찾기 메뉴 삭제
+    @Transactional
+    public void removeFavorites(final long memberId, final String favoriteIds, final boolean all){
+        Member member = memberRetriever.findMemberById(memberId);
+        if(all){
+            favoriteRemover.deleteByMemberId(member.getId());
+        } else if (favoriteIds != null && !favoriteIds.isEmpty()) {
+            List<Long> favoriteIdList = Arrays.stream(favoriteIds.split(",")).map(Long::parseLong).toList();
+            favoriteRemover.deleteByMemberIdAndIds(member.getId(), favoriteIdList);
+        } else {
+            throw new IllegalArgumentException("all 이나 favoriteIds 둘 중 하나는 반드시 포함되어야 합니다.");
+        }
+    }
 }
