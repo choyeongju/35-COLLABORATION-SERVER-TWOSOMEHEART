@@ -17,12 +17,11 @@ public class MenuController {
 
     // 메뉴 상세 정보 가져오기
     @GetMapping("v1/menu/{menuId}")
-    public ResponseEntity<TaskDetailDto> getMenuDetails(
+    public ResponseEntity<SuccessResponse<TaskDetailDto>> getMenuDetails(
             @RequestHeader("Authorization") long memberId,
             @PathVariable("menuId") long menuId
-    )
-    {
-        return ResponseEntity.ok(SuccessResponse.of(SuccessCode.GET_MENU_DETAIL,
-                menuService.getMenuDetails(memberId, menuId)).data());
+    ) {
+        TaskDetailDto menuDetails = menuService.getMenuDetails(memberId, menuId);
+        return ResponseEntity.ok(SuccessResponse.of(SuccessCode.GET_MENU_DETAIL, menuDetails));
     }
 }
