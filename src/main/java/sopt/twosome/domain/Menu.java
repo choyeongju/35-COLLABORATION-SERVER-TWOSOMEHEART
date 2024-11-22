@@ -26,7 +26,7 @@ public class Menu {
     private String description;
 
     @Column(name = "price", nullable = false)
-    private Long price;
+    private int price;
 
     @Column(name = "caution", nullable = false)
     private String caution;

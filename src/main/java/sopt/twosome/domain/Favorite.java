@@ -31,7 +31,7 @@ public class Favorite {
     private String name;
 
     @Column(name = "price", nullable = false)
-    private Long price;
+    private int price;
 
     @Column(name = "temperature", nullable = false)
     private Temperature temperature;
@@ -52,7 +52,7 @@ public class Favorite {
     private String imageUrl;
 
     @Builder
-    public Favorite(long id, Member member, Menu menu, String name, Long price, Temperature temperature, Size size, CoffeeBean coffeeBean, Togo togo, Boolean personal, String imageUrl) {
+    public Favorite(long id, Member member, Menu menu, String name, int price, Temperature temperature, Size size, CoffeeBean coffeeBean, Togo togo, Boolean personal, String imageUrl) {
         this.id = id;
         this.member = member;
         this.menu = menu;
