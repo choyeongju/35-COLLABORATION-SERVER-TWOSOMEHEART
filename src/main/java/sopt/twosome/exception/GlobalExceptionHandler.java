@@ -2,10 +2,11 @@ package sopt.twosome.exception;
 
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import sopt.twosome.dto.common.ErrorResponse;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateOptionException.class)
     public ResponseEntity<ErrorResponse> handleDuplicateOptionException(DuplicateOptionException e) {

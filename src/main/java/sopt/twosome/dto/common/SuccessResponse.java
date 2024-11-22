@@ -1,7 +1,8 @@
-package sopt.twosome.exception;
+package sopt.twosome.dto.common;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import sopt.twosome.exception.SuccessCode;
 
 public record SuccessResponse<T>(
         int status,

@@ -1,4 +1,4 @@
-package sopt.twosome.exception;
+package sopt.twosome.dto.common;
 
 public record ErrorResponse(
         int status

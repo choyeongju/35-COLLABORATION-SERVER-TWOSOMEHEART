@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum ErrorCode{
     //1. 메뉴 상세 정보 가져오기
-    NOT_FOUND_LIKES_MENU_DETAIL(HttpStatus.BAD_REQUEST),
+    NOT_FOUND_LIKES_MENU_DETAIL(HttpStatus.NOT_FOUND),
 
     //2. 메뉴 즐겨찾기
     //필수 옵션 선택하지 않는 경우
@@ -16,7 +16,7 @@ public enum ErrorCode{
     //즐겨찾기하는 메뉴의 옵션이 중복되는 경우
     DUPLICATED_MENU_OPTION(HttpStatus.BAD_REQUEST),
     //3. 즐겨찾기 메뉴 보여주기
-    NOT_FOUND_LIKES_MENU_LIST(HttpStatus.BAD_REQUEST),
+    NOT_FOUND_LIKES_MENU_LIST(HttpStatus.NOT_FOUND),
     ;
 
     private final HttpStatus httpStatus;
