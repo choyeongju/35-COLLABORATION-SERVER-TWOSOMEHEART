@@ -17,6 +17,8 @@ public enum ErrorCode{
     DUPLICATED_MENU_OPTION(HttpStatus.BAD_REQUEST),
     //3. 즐겨찾기 메뉴 보여주기
     NOT_FOUND_LIKES_MENU_LIST(HttpStatus.NOT_FOUND),
+    // 삭제하려는 것에 해당하는 즐겨찾기 메뉴 가 없는 경우
+    NOT_FOUND_LIKES_MENU(HttpStatus.NOT_FOUND),
 
     NOT_EXISTS_MENU_WITH_ID(HttpStatus.NOT_FOUND),
     NOT_EXISTS_MEMBER_WITH_ID(HttpStatus.NOT_FOUND)

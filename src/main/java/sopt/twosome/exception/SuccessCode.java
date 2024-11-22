@@ -11,6 +11,7 @@ public enum SuccessCode {
     GET_MENU_DETAIL(HttpStatus.OK),
     GET_LIKES_MENU_LIST(HttpStatus.OK),
     GET_LIKES_MENU_DETAIL(HttpStatus.OK),
+    DELETE_FAVORITES(HttpStatus.OK),
 
     POST_LIKES_MENU(HttpStatus.CREATED),
 
