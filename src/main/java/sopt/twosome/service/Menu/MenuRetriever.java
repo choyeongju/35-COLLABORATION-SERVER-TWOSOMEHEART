@@ -16,5 +16,4 @@ public class MenuRetriever {
         return menuRepository.findById(menuId)
                 .orElseThrow(() -> new InvalidArgsException(ErrorCode.NOT_EXISTS_MENU_WITH_ID));
     }
-
 }
