@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sopt.twosome.dto.common.SuccessResponse;
 import sopt.twosome.dto.request.FavoriteCreateRequest;
+import sopt.twosome.dto.response.FavoriteListResponse;
 import sopt.twosome.exception.SuccessCode;
 
 import sopt.twosome.service.Favorite.FavoriteService;
@@ -36,5 +37,14 @@ public class FavoriteController {
     ){
         favoriteService.removeFavorites(memberId, favoriteIds, all);
         return ResponseEntity.ok(SuccessResponse.of(SuccessCode.DELETE_FAVORITES));
+    }
+
+    //즐겨찾기 목록 조회
+    @GetMapping("/v1/likes")
+    public ResponseEntity<SuccessResponse<FavoriteListResponse>> getFavorites(
+            @RequestHeader("Authorization") long memberId
+    ) {
+        FavoriteListResponse favoriteListResponse = favoriteService.getListFavorites(memberId);
+        return ResponseEntity.ok(SuccessResponse.of(SuccessCode.GET_LIKES_MENU_LIST, favoriteListResponse ));
     }
 }
