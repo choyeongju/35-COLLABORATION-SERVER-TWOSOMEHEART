@@ -1,7 +1,8 @@
 package sopt.twosome.service.Favorite;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sopt.twosome.domain.Favorite;
 import sopt.twosome.domain.Member;
 import sopt.twosome.domain.Menu;
@@ -11,7 +12,7 @@ import sopt.twosome.repository.MenuRepository;
 import sopt.twosome.service.Member.MemberRetriever;
 import sopt.twosome.service.Menu.MenuRetriever;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class FavoriteService {
     private final FavoriteSaver favoriteSaver;
@@ -19,6 +20,7 @@ public class FavoriteService {
     private final MenuRetriever menuRetriever;
 
     //메뉴 즐겨찾기(저장) 기능
+    @Transactional
     public Favorite createFavorite(final long menuId, final long memberId, final FavoriteCreateRequest favoriteCreateRequest) {
 
         Menu menu = menuRetriever.findMenuById(menuId);

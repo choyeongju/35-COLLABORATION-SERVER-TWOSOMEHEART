@@ -16,7 +16,11 @@ public class FavoriteController {
     private final FavoriteService favoriteService;
 
     @PostMapping("/api/v1/menu/{menuId}/likes")
-    ResponseEntity<SuccessResponse<Void>> addMenuToFavorites(@Valid @PathVariable(name="menuId") long menuId, @RequestHeader(value="memberId") long memberId, @RequestBody FavoriteCreateRequest favoriteCreateRequest) {
+    ResponseEntity<SuccessResponse<Void>> addMenuToFavorites(
+            @Valid @PathVariable(name="menuId") long menuId,
+            @RequestHeader(value="memberId") long memberId,
+            @RequestBody FavoriteCreateRequest favoriteCreateRequest
+    ) {
         favoriteService.createFavorite(menuId, memberId, favoriteCreateRequest);
         return ResponseEntity.ok(SuccessResponse.of(SuccessCode.POST_LIKES_MENU));
     }
