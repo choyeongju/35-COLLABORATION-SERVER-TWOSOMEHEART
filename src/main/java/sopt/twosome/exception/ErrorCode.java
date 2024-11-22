@@ -17,6 +17,9 @@ public enum ErrorCode{
     DUPLICATED_MENU_OPTION(HttpStatus.BAD_REQUEST),
     //3. 즐겨찾기 메뉴 보여주기
     NOT_FOUND_LIKES_MENU_LIST(HttpStatus.NOT_FOUND),
+
+    NOT_EXISTS_MENU_WITH_ID(HttpStatus.NOT_FOUND),
+    NOT_EXISTS_MEMBER_WITH_ID(HttpStatus.NOT_FOUND)
     ;
 
     private final HttpStatus httpStatus;

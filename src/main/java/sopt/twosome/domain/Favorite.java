@@ -2,8 +2,13 @@ package sopt.twosome.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import sopt.twosome.enums.CoffeeBean;
+import sopt.twosome.enums.Size;
+import sopt.twosome.enums.Temperature;
+import sopt.twosome.enums.Togo;
 
 @Entity
 @Getter
@@ -29,20 +34,35 @@ public class Favorite {
     private Long price;
 
     @Column(name = "temperature", nullable = false)
-    private String temperature;
+    private Temperature temperature;
 
     @Column(name = "size", nullable = false)
-    private String size;
+    private Size size;
 
     @Column(name = "coffee_bean", nullable = false)
-    private String coffeeBean;
+    private CoffeeBean coffeeBean;
 
     @Column(name = "togo", nullable = false)
-    private String togo;
+    private Togo togo;
 
     @Column(name = "personal")
     private Boolean personal;
 
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
+
+    @Builder
+    public Favorite(long id, Member member, Menu menu, String name, Long price, Temperature temperature, Size size, CoffeeBean coffeeBean, Togo togo, Boolean personal, String imageUrl) {
+        this.id = id;
+        this.member = member;
+        this.menu = menu;
+        this.name = name;
+        this.price = price;
+        this.temperature = temperature;
+        this.size = size;
+        this.coffeeBean = coffeeBean;
+        this.togo = togo;
+        this.personal = personal;
+        this.imageUrl = imageUrl;
+    }
 }
