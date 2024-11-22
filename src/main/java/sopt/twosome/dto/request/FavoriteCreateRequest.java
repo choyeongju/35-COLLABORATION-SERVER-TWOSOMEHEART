@@ -10,7 +10,7 @@ public record FavoriteCreateRequest(
         @NotNull(message = "음료 이름은 반드시 지정되어야 합니다.")
         String name,
         @NotNull(message = "음료 가격은 반드시 지정되어야 합니다.")
-        Long price,
+        int price,
         @NotNull(message = "음료 온도는 반드시 지정되어야 합니다.")
         Temperature temperature,
         @NotNull(message = "음료 사이즈는 반드시 지정되어야 합니다.")
