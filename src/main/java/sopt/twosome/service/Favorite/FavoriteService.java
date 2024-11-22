@@ -27,7 +27,7 @@ public class FavoriteService {
         Member member = memberRetriever.findMemberById(memberId);
 
         // personal이 true인 경우 할인
-        Long adjustedPrice = favoriteCreateRequest.personal()
+        int adjustedPrice = favoriteCreateRequest.personal()
                 ? favoriteCreateRequest.price() - 300
                 : favoriteCreateRequest.price();
 
