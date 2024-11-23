@@ -16,6 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class FavoriteService {
 
     private final MemberRetriever memberRetriever;
@@ -50,6 +51,8 @@ public class FavoriteService {
                 .imageUrl(menu.getImageUrl())
                 .build();
 
+        //favorite 존재하면 예외 처리
+
         return favoriteSaver.save(favoriteItem);
     }
 
@@ -68,7 +71,6 @@ public class FavoriteService {
     }
 
     //즐겨찾기 리스트 조회 기능
-    @Transactional(readOnly = true)
     public FavoriteListResponse getListFavorites(final long memberId) {
         List<Favorite> favoriteList = favoriteRepository.findAllByMemberId(memberId);
         List<FavoriteListResponse.FavoriteResponse> favoriteResponse = favoriteList.stream()
