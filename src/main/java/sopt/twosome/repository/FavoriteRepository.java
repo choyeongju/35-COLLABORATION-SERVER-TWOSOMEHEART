@@ -27,4 +27,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     @Modifying
     @Query("DELETE FROM Favorite f WHERE f.member.id = :memberId AND f.id IN :favoriteIds")
     void deleteByMemberIdAndIds(@Param("memberId") long memberId, @Param("favoriteIds") List<Long> favoriteIds);
+
+    List<Favorite> findAllByMemberId(long memberId);
 }

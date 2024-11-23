@@ -7,6 +7,8 @@ import sopt.twosome.domain.Favorite;
 import sopt.twosome.domain.Member;
 import sopt.twosome.domain.Menu;
 import sopt.twosome.dto.request.FavoriteCreateRequest;
+import sopt.twosome.dto.response.FavoriteListResponse;
+import sopt.twosome.repository.FavoriteRepository;
 import sopt.twosome.service.Member.MemberRetriever;
 import sopt.twosome.service.Menu.MenuRetriever;
 import java.util.Arrays;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class FavoriteService {
 
     private final MemberRetriever memberRetriever;
@@ -21,6 +24,7 @@ public class FavoriteService {
 
     private final FavoriteSaver favoriteSaver;
     private final FavoriteRemover favoriteRemover;
+    private final FavoriteRepository favoriteRepository;
 
     //메뉴 즐겨찾기(저장) 기능
     @Transactional
@@ -47,6 +51,8 @@ public class FavoriteService {
                 .imageUrl(menu.getImageUrl())
                 .build();
 
+        //favorite 존재하면 예외 처리
+
         return favoriteSaver.save(favoriteItem);
     }
 
@@ -62,5 +68,25 @@ public class FavoriteService {
         } else {
             throw new IllegalArgumentException("all 이나 favoriteIds 둘 중 하나는 반드시 포함되어야 합니다.");
         }
+    }
+
+    //즐겨찾기 리스트 조회 기능
+    public FavoriteListResponse getListFavorites(final long memberId) {
+        List<Favorite> favoriteList = favoriteRepository.findAllByMemberId(memberId);
+        List<FavoriteListResponse.FavoriteResponse> favoriteResponse = favoriteList.stream()
+                .map(favorite -> FavoriteListResponse.FavoriteResponse.of(
+                        favorite.getId(),
+                        favorite.getName(),
+                        favorite.getPrice(),
+                        favorite.getImageUrl(),
+                        favorite.getTemperature(),
+                        favorite.getSize(),
+                        favorite.getCoffeeBean(),
+                        favorite.getTogo(),
+                        favorite.getPersonal()
+                ))
+                .toList();
+
+        return FavoriteListResponse.of(favoriteResponse);
     }
 }
