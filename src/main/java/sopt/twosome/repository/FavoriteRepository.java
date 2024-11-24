@@ -5,6 +5,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import sopt.twosome.domain.Favorite;
+import sopt.twosome.enums.CoffeeBean;
+import sopt.twosome.enums.Size;
+import sopt.twosome.enums.Temperature;
+import sopt.twosome.enums.Togo;
+
 import java.util.List;
 
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
@@ -29,4 +34,12 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
     void deleteByMemberIdAndIds(@Param("memberId") long memberId, @Param("favoriteIds") List<Long> favoriteIds);
 
     List<Favorite> findAllByMemberId(long memberId);
+    boolean existsByMemberIdAndMenuIdAndTemperatureAndSizeAndCoffeeBeanAndTogo(
+            long memberId,
+            long menuId,
+            Temperature temperature,
+            Size size,
+            CoffeeBean coffeeBean,
+            Togo togo
+    );
 }

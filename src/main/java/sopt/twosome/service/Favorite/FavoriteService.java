@@ -8,6 +8,8 @@ import sopt.twosome.domain.Member;
 import sopt.twosome.domain.Menu;
 import sopt.twosome.dto.request.FavoriteCreateRequest;
 import sopt.twosome.dto.response.FavoriteListResponse;
+import sopt.twosome.exception.DuplicateOptionException;
+import sopt.twosome.exception.ErrorCode;
 import sopt.twosome.repository.FavoriteRepository;
 import sopt.twosome.service.Member.MemberRetriever;
 import sopt.twosome.service.Menu.MenuRetriever;
@@ -37,6 +39,20 @@ public class FavoriteService {
         int adjustedPrice = favoriteCreateRequest.personal()
                 ? favoriteCreateRequest.price() - 300
                 : favoriteCreateRequest.price();
+
+        //즐겨찾기 메뉴 중복 확인
+        boolean isDuplicate = favoriteRepository.existsByMemberIdAndMenuIdAndTemperatureAndSizeAndCoffeeBeanAndTogo(
+                memberId,
+                menuId,
+                favoriteCreateRequest.temperature(),
+                favoriteCreateRequest.size(),
+                favoriteCreateRequest.coffeeBean(),
+                favoriteCreateRequest.togo()
+        );
+
+        if (isDuplicate) {
+            throw new DuplicateOptionException(ErrorCode.DUPLICATED_MENU_OPTION);
+        }
 
         Favorite favoriteItem = Favorite.builder()
                 .member(member)
