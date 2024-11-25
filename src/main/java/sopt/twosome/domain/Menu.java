@@ -28,13 +28,13 @@ public class Menu {
     @Column(name = "price", nullable = false)
     private int price;
 
-    @Column(name = "caution", nullable = false)
+    @Column(name = "caution")
     private String caution;
 
     @Column(name = "nutrition", nullable = false)
     private String nutrition;
 
-    @Column(name = "allergy", nullable = false)
+    @Column(name = "allergy")
     private String allergy;
 
     @Column(name = "image_url", nullable = false)
