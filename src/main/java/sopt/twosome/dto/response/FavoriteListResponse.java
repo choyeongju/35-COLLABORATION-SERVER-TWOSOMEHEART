@@ -15,14 +15,14 @@ public record FavoriteListResponse(
             String name,
             int price,
             String imageUrl,
-            int temperature,
-            int size,
-            int coffeeBean,
-            int togo,
+            String temperature,
+            String size,
+            String coffeeBean,
+            String togo,
             boolean personal
     ) {
         public static FavoriteResponse of(final Long id, final String name, final int price, final String imageUrl, final Temperature temperature, final Size size, final CoffeeBean coffeeBean, final Togo togo, final boolean personal) {
-            return new FavoriteResponse(id, name, price, imageUrl, temperature.getIndex(), size.getIndex(), coffeeBean.getIndex(), togo.getIndex(), personal);
+            return new FavoriteResponse(id, name, price, imageUrl, temperature.getValue(), size.getValue(), coffeeBean.getValue(), togo.getValue(), personal);
         }
 
     }

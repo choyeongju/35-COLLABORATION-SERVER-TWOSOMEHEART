@@ -21,7 +21,10 @@ public enum ErrorCode{
     NOT_FOUND_LIKES_MENU(HttpStatus.NOT_FOUND),
 
     NOT_EXISTS_MENU_WITH_ID(HttpStatus.NOT_FOUND),
-    NOT_EXISTS_MEMBER_WITH_ID(HttpStatus.NOT_FOUND)
+    NOT_EXISTS_MEMBER_WITH_ID(HttpStatus.NOT_FOUND),
+
+    //메뉴 즐겨찾기 시 잘못된 옵션(존재X) 선택
+    INVALID_OPTIONS(HttpStatus.BAD_REQUEST)
     ;
 
     private final HttpStatus httpStatus;
