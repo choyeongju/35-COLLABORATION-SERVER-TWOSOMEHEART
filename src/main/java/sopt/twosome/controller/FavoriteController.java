@@ -18,6 +18,7 @@ public class FavoriteController {
 
     private final FavoriteService favoriteService;
 
+    // 메뉴 즐겨찾기
     @PostMapping("/v1/menu/{menuId}/likes")
     ResponseEntity<SuccessResponse<Void>> addMenuToFavorites(
             @RequestHeader("Authorization") long memberId,
