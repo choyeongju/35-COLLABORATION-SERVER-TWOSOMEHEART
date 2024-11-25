@@ -88,6 +88,7 @@ public class FavoriteService {
 
     //즐겨찾기 리스트 조회 기능
     public FavoriteListResponse getListFavorites(final long memberId) {
+        Member member = memberRetriever.findMemberById(memberId);
         List<Favorite> favoriteList = favoriteRepository.findAllByMemberId(memberId);
         List<FavoriteListResponse.FavoriteResponse> favoriteResponse = favoriteList.stream()
                 .map(favorite -> FavoriteListResponse.FavoriteResponse.of(
