@@ -12,6 +12,7 @@ import sopt.twosome.enums.Togo;
 
 @Entity
 @Getter
+@Table(name = "favorite")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Favorite {
 

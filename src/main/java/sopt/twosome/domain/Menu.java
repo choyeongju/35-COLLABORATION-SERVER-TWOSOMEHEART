@@ -8,6 +8,7 @@ import sopt.twosome.enums.Status;
 
 @Entity
 @Getter
+@Table(name = "menu")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu {
 
