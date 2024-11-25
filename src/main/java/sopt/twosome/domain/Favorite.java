@@ -34,15 +34,19 @@ public class Favorite {
     private int price;
 
     @Column(name = "temperature", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Temperature temperature;
 
     @Column(name = "size", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Size size;
 
     @Column(name = "coffee_bean", nullable = false)
+    @Enumerated(EnumType.STRING)
     private CoffeeBean coffeeBean;
 
     @Column(name = "togo", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Togo togo;
 
     @Column(name = "personal")
