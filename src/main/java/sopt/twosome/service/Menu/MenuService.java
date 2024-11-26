@@ -16,7 +16,7 @@ public class MenuService {
     private final MenuRetriever menuRetriever;
     private final MemberRetriever memberRetriever;
 
-    public TaskDetailDto getMenuDetails(final long menuId, final long memberId) {
+    public TaskDetailDto getMenuDetails(final long memberId, final long menuId) {
 
         Member member = memberRetriever.findMemberById(memberId);
         Menu menu = menuRetriever.findMenuById(menuId);
