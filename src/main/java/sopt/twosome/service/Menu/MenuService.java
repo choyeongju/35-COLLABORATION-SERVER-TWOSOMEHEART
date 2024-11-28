@@ -24,7 +24,7 @@ public class MenuService {
         return TaskDetailDto.builder()
                 .id(menu.getId())
                 .name(menu.getName())
-                .status(String.valueOf(menu.getStatus()))
+                .status(menu.getStatus())
                 .description(menu.getDescription())
                 .price(menu.getPrice())
                 .caution(menu.getCaution())
@@ -33,7 +33,4 @@ public class MenuService {
                 .image_url(menu.getImageUrl())
                 .build();
     }
-
-
-
 }

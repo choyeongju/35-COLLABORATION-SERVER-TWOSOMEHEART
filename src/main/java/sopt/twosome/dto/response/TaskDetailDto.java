@@ -1,12 +1,13 @@
 package sopt.twosome.dto.response;
 
 import lombok.Builder;
+import sopt.twosome.enums.Status;
 
 @Builder
 public record TaskDetailDto(
         Long id,
         String name,
-        String status,
+        Status status,
         String description,
         int price,
         String caution,
